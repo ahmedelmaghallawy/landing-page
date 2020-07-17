@@ -34,13 +34,30 @@ const createLi = (sectionNum) => {
     li.classList = ['navbar__menu']
     const a = document.createElement('a');
     a.setAttribute('href', `#section${sectionNum}`);
-    a.textContent = `Section${sectionNum}`;
+    a.textContent = `section${sectionNum}`;
     a.classList = ['menu__link']
     li.appendChild(a);
-    
+
     return li;
 }
 
+const ElementLocation = (ele) => {
+    const bodyElem = document.body.getBoundingClientRect().top;
+    const elementSection = ele.getBoundingClientRect().top;
+    const areaOffset = elementSection - bodyElem;
+    return areaOffset;
+}
+
+const scrollToClickedSection = (e) => {
+    if (e.target.className === 'menu__link') {
+        const link = e.target;
+        const section = document.querySelector(`#${link.textContent}`);
+        window.scrollTo({ top: ElementLocation(section), behavior: 'smooth' });
+        document.querySelector('.your-active-class').className = '';
+        section.className = 'your-active-class';
+    }
+
+}
 
 /**
  * End Helper Functions
@@ -49,8 +66,8 @@ const createLi = (sectionNum) => {
 */
 
 // build the nav
-for (let i = 0; i<Sections.length; i++){
-    sectionNum = i+1;
+for (let i = 0; i < Sections.length; i++) {
+    sectionNum = i + 1;
     const li = createLi(sectionNum);
     navbarUl.appendChild(li);
 }
@@ -70,7 +87,7 @@ for (let i = 0; i<Sections.length; i++){
 // Build menu 
 
 // Scroll to section on link click
-
+navbarUl.addEventListener('click', scrollToClickedSection);
 // Set sections as active
 
 
