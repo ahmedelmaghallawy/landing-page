@@ -24,10 +24,8 @@
  * Start Helper Functions
  * 
 */
-const Sections = document.querySelectorAll('section');
-console.log(Sections);
+const sections = document.querySelectorAll('section');
 const navbarUl = document.querySelector('#navbar__list');
-console.log(navbarUl);
 
 const createLi = (sectionNum) => {
     const li = document.createElement('li');
@@ -48,6 +46,41 @@ const ElementLocation = (ele) => {
     return areaOffset;
 }
 
+const sectionLocations = () => {
+    const SectionTopPoints = [];
+    for (sec of sections) {
+        SectionTopPoints.push(ElementLocation(sec));
+    }
+    return SectionTopPoints;
+}
+
+/**
+ * End Helper Functions
+ * Begin Main Functions
+ *
+*/
+
+// build the nav
+for (let i = 0; i < sections.length; i++) {
+    sectionNum = i + 1;
+    const li = createLi(sectionNum);
+    navbarUl.appendChild(li);
+}
+
+// Add class 'active' to section link when near top of viewport
+const scrollToActivate = () => {
+    const section_points = sectionLocations();
+    for (let i = 0; i < section_points.length; i++) {
+        const links = document.querySelectorAll(".menu__link");
+        if (window.scrollY >= section_points[i] && !(window.scrollY > section_points[i + 1])) {
+            links[i].classList.add('active');
+        } else {
+            links[i].classList.remove('active');
+        }
+    }
+}
+
+// Scroll to anchor ID using scrollTO event
 const scrollToClickedSection = (e) => {
     if (e.target.className === 'menu__link') {
         const link = e.target;
@@ -58,24 +91,6 @@ const scrollToClickedSection = (e) => {
     }
 
 }
-
-/**
- * End Helper Functions
- * Begin Main Functions
- *
-*/
-
-// build the nav
-for (let i = 0; i < Sections.length; i++) {
-    sectionNum = i + 1;
-    const li = createLi(sectionNum);
-    navbarUl.appendChild(li);
-}
-
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
 
 
 /**
@@ -89,5 +104,5 @@ for (let i = 0; i < Sections.length; i++) {
 // Scroll to section on link click
 navbarUl.addEventListener('click', scrollToClickedSection);
 // Set sections as active
-
+window.addEventListener("scroll", scrollToActivate);
 
