@@ -81,10 +81,11 @@ const scrollToActivate = () => {
 
 // Scroll to anchor ID using scrollTO event
 const scrollToClickedSection = (e) => {
+    e.preventDefault();
     if (e.target.className === 'menu__link') {
         const link = e.target;
         const section = document.querySelector(`#${link.textContent}`);
-        window.scrollTo({ top: ElementLocation(section), behavior: 'smooth' });
+        section.scrollIntoView({behavior: 'smooth'});
         document.querySelector('.your-active-class').className = '';
         section.className = 'your-active-class';
     }
