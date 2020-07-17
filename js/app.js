@@ -121,7 +121,7 @@ navbarUl.addEventListener('click', scrollToClickedSection);
 // Set sections links as active while scrolling through section
 window.addEventListener("scroll", scrollToActivate);
 
-function buildNavBar() {
+const buildNavBar = () => {
     const sections = document.querySelectorAll('section');
     for (let i = 0; i < sections.length; i++) {
         sectionNum = i + 1;
@@ -130,7 +130,7 @@ function buildNavBar() {
     }
 }
 
-function addSectionDynamically() {
+const addSectionDynamically = () => {
     const dynamicallyAddedSec = document.createElement('section');
     dynamicallyAddedSec.setAttribute('id', 'section4');
     dynamicallyAddedSec.setAttribute('data-nav', 'Section 4');
