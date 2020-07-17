@@ -19,7 +19,7 @@
 */
 const sections = document.querySelectorAll('section');
 const navbarUl = document.querySelector('#navbar__list');
-
+const toTopbutton = document.getElementById("toTopBtn");
 /**
  * End Global Variables
  * Start Helper Functions
@@ -92,6 +92,19 @@ const scrollToClickedSection = (e) => {
 
 }
 
+window.onscroll = () => { scrollFunction() };
+//detect of the document element is totally scrolled adn show the toTopBtn
+const scrollFunction = () => {
+    if (document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight) {
+        toTopbutton.style.display = "block";
+    } else {
+        toTopbutton.style.display = "none";
+    }
+}
+
+const scrollToTop = () => {
+    document.documentElement.scrollTop = 0;
+}
 
 /**
  * End Main Functions
