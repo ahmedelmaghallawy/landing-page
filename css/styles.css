@@ -82,9 +82,13 @@ section {
     color: #000;
 }
 
-.navbar__menu .menu__link:hover {
+.navbar__menu .menu__link:hover:not(.active) {
     background: #333;
     color: #fff;
+    transition: ease 0.3s all;
+}
+.active {
+    background: rgb(30, 150, 187);
     transition: ease 0.3s all;
 }
 
