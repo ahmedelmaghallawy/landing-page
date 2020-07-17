@@ -85,7 +85,7 @@ const scrollToClickedSection = (e) => {
     if (e.target.className === 'menu__link') {
         const link = e.target;
         const section = document.querySelector(`#${link.textContent}`);
-        section.scrollIntoView({behavior: 'smooth'});
+        section.scrollIntoView({ behavior: 'smooth' });
         document.querySelector('.your-active-class').className = '';
         section.className = 'your-active-class';
     }
