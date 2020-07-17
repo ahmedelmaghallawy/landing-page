@@ -69,10 +69,10 @@ for (let i = 0; i < sections.length; i++) {
 
 // Add class 'active' to section link when near top of viewport
 const scrollToActivate = () => {
-    const section_points = sectionLocations();
-    for (let i = 0; i < section_points.length; i++) {
+    const sectionPonts = sectionLocations();
+    for (let i = 0; i < sectionPonts.length; i++) {
         const links = document.querySelectorAll(".menu__link");
-        if (window.scrollY >= section_points[i] && !(window.scrollY > section_points[i + 1])) {
+        if (window.scrollY >= sectionPonts[i] && !(window.scrollY > sectionPonts[i + 1])) {
             links[i].classList.add('active');
         } else {
             links[i].classList.remove('active');
