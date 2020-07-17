@@ -17,15 +17,15 @@
  * Define Global Variables
  * 
 */
-
+const sections = document.querySelectorAll('section');
+const navbarUl = document.querySelector('#navbar__list');
 
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
-const sections = document.querySelectorAll('section');
-const navbarUl = document.querySelector('#navbar__list');
+
 
 const createLi = (sectionNum) => {
     const li = document.createElement('li');
